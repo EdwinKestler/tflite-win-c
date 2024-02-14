@@ -13,7 +13,7 @@ using namespace cv;
 void runObjectDetection() {
 	Mat src = imread("od_test.jpg");
 
-	ObjectDetector detector = ObjectDetector("ssd_mobilenet_v3_float.tflite", false);
+	ObjectDetector detector = ObjectDetector("ssd_mobilenet_v3_float.tflite", false, false);
 	DetectResult* res = detector.detect(src);
 	for (int i = 0; i < detector.DETECT_NUM; ++i) {
 		int label = res[i].label;
@@ -32,45 +32,53 @@ void runObjectDetection() {
 }
 
 void runObjectDetectionLive() {
-	VideoCapture cap(0);
-	ObjectDetector detector = ObjectDetector("ssd_mobilenet_v3_float.tflite", false, false);
-	int i = 0;
-	long long duration = 0;
-	double fps = 0;
-	while (true) {
-		Mat frame;
-		cap >> frame;
+    VideoCapture cap(0);
+    ObjectDetector detector = ObjectDetector("ssd_mobilenet_v3_float.tflite", false, false);
+    int i = 0;
+    long long duration = 0;
+    double fps = 0;
+    int frameCounter = 0; // Counter to keep track of frames
+    int updateInterval = 5; // Update the display every 5 frames
+    while (true) {
+        Mat frame;
+        cap >> frame;
 
-		auto start = chrono::high_resolution_clock::now();
-		DetectResult* res = detector.detect(frame);
-		auto stop = chrono::high_resolution_clock::now();
-		for (int i = 0; i < detector.DETECT_NUM; ++i) {
-			int label = res[i].label;
-			float score = res[i].score;
-			float xmin = res[i].xmin;
-			float xmax = res[i].xmax;
-			float ymin = res[i].ymin;
-			float ymax = res[i].ymax;
+        auto start = chrono::high_resolution_clock::now();
+        DetectResult* res = detector.detect(frame);
+        auto stop = chrono::high_resolution_clock::now();
 
-			rectangle(frame, Point(xmin, ymin), Point(xmax, ymax), Scalar(0, 0, 255), 2);
-			putText(frame, to_string(label) + "-" + to_string(score), Point(xmin, ymin), FONT_HERSHEY_PLAIN, 1.5, Scalar(0, 0, 255), 2);
-		}
+        // Only draw on every Nth frame to reduce drawing overhead
+        if (frameCounter % updateInterval == 0) {
+            for (int i = 0; i < detector.DETECT_NUM; ++i) {
+                int label = res[i].label;
+                float score = res[i].score;
+                float xmin = res[i].xmin;
+                float xmax = res[i].xmax;
+                float ymin = res[i].ymin;
+                float ymax = res[i].ymax;
 
-		auto d = chrono::duration_cast<chrono::milliseconds>(stop - start);
-		duration += d.count();
-		if (++i % 5 == 0) {
-			fps = (1000.0 / duration) * 5;
-			duration = 0;
-		}
+                rectangle(frame, Point(xmin, ymin), Point(xmax, ymax), Scalar(0, 0, 255), 2);
+                putText(frame, to_string(label) + "-" + to_string(score), Point(xmin, ymin), FONT_HERSHEY_PLAIN, 1.5, Scalar(0, 0, 255), 2);
+            }
+        }
 
-		putText(frame, to_string((int)fps) + " fps", Point(20, 20), FONT_HERSHEY_PLAIN, 1.5, Scalar(255, 0, 0), 2);
+        auto d = chrono::duration_cast<chrono::milliseconds>(stop - start);
+        duration += d.count();
+        if (++i % 5 == 0) {
+            fps = (1000.0 / duration) * 5;
+            duration = 0;
+        }
 
-		imshow("frame", frame);
-		int k = waitKey(50);
-		if (k > 0) {
-			break;
-		}
-	}
+        // FPS display update remains unchanged for real-time feedback
+        putText(frame, to_string((int)fps) + " fps", Point(20, 20), FONT_HERSHEY_PLAIN, 1.5, Scalar(255, 0, 0), 2);
+
+        imshow("frame", frame);
+        int k = waitKey(50);
+        if (k > 0) {
+            break;
+        }
+        ++frameCounter; // Increment frame counter
+    }
 }
 
 
@@ -119,8 +127,8 @@ void runStyleTransfer() {
 
 int main()
 {
-	runObjectDetectionLive();
+	//runObjectDetectionLive();
 	//runObjectDetection();
-	// runSegmentation();
+	//runSegmentation();
 	// runStyleTransfer();
 }
