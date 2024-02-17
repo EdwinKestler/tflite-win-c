@@ -57,7 +57,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tflite-c-win::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tflite-c-win-Debug-bf68ea8475df8567b03b.json",
+					"jsonFile" : "target-tflite-c-win-Debug-7740cba388baeb47e694.json",
 					"name" : "tflite-c-win",
 					"projectIndex" : 0
 				}
@@ -119,7 +119,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tflite-c-win::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tflite-c-win-Release-cbc6b2bf26353c3d5b60.json",
+					"jsonFile" : "target-tflite-c-win-Release-9bd138debe83b1c4d9ba.json",
 					"name" : "tflite-c-win",
 					"projectIndex" : 0
 				}
@@ -181,7 +181,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tflite-c-win::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tflite-c-win-MinSizeRel-e1911c70d3b2fb673415.json",
+					"jsonFile" : "target-tflite-c-win-MinSizeRel-54263643fe282ff51483.json",
 					"name" : "tflite-c-win",
 					"projectIndex" : 0
 				}
@@ -243,7 +243,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tflite-c-win::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tflite-c-win-RelWithDebInfo-b7ed319fd630a92b0203.json",
+					"jsonFile" : "target-tflite-c-win-RelWithDebInfo-3daaab1d4f5e4c01a000.json",
 					"name" : "tflite-c-win",
 					"projectIndex" : 0
 				}

@@ -7,6 +7,9 @@
     <ClCompile Include="E:\tflite-win-c\ObjectDetector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\tflite-win-c\rstpStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="E:\tflite-win-c\CMakeLists.txt" />

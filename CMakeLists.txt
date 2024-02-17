@@ -18,7 +18,7 @@ find_package(OpenCV REQUIRED PATHS "${OPENCV_ROOT}" NO_DEFAULT_PATH)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 # Application Source
-add_executable(tflite-c-win Main.cpp  ObjectDetector.cpp )
+add_executable(tflite-c-win Main.cpp  ObjectDetector.cpp rstpStream.cpp)
 
 # Link Libraries
 target_link_libraries(tflite-c-win ${OpenCV_LIBS} "E:/tflite-dist/libs/windows_x86_64/tensorflowlite_c.dll.if.lib")

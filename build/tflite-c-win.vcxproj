@@ -383,6 +383,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="E:\tflite-win-c\Main.cpp" />
     <ClCompile Include="E:\tflite-win-c\ObjectDetector.cpp" />
+    <ClCompile Include="E:\tflite-win-c\rstpStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="E:\tflite-win-c\build\ZERO_CHECK.vcxproj">
